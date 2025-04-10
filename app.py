@@ -49,7 +49,6 @@ swaggerui_blueprint = get_swaggerui_blueprint(
 
 # Registrar el blueprint de Swagger UI
 app.register_blueprint(swaggerui_blueprint, url_prefix=SWAGGER_URL)
-
 # Ruta para servir el archivo swagger.json
 @app.route(API_URL)
 def swagger():
@@ -60,6 +59,7 @@ def swagger():
             "description": "API para gestión de usuarios (registro, autenticación, CRUD)",
             "version": "1.0"
         },
+        "basePath": "/users",  # Añadido el basePath para evitar duplicación
         "tags": [
             {
                 "name": "Usuarios",
@@ -67,7 +67,7 @@ def swagger():
             }
         ],
         "paths": {
-            "/users": {
+            "/users": {  # Cambiado de "users/users" a "/users"
                 "get": {
                     "tags": ["Usuarios"],
                     "summary": "Obtener todos los usuarios",
@@ -106,7 +106,7 @@ def swagger():
                     }
                 }
             },
-            "/users/{user_id}": {
+            "/{user_id}": {  # Cambiado de "/users/{user_id}" a "/{user_id}"
                 "get": {
                     "tags": ["Usuarios"],
                     "summary": "Obtener usuario por ID",
@@ -189,7 +189,7 @@ def swagger():
                     }
                 }
             },
-            "/users/login": {
+            "/login": {  # Cambiado de "users/login" a "/login"
                 "post": {
                     "tags": ["Usuarios"],
                     "summary": "Autenticar usuario",
@@ -252,6 +252,6 @@ def swagger():
             }
         }
     })
-
+    
 if __name__ == '__main__':
     app.run(debug=True)
