@@ -30,7 +30,7 @@ db.init_app(app)
 migrate.init_app(app, db)
 
 # Registrar blueprint de usuarios con prefijo '/users'
-app.register_blueprint(user_bp, url_prefix='/')
+app.register_blueprint(user_bp, url_prefix='/users')
 
 # Configuración Swagger UI
 SWAGGER_URL = '/api/docs'  # URL para acceder a la UI de Swagger
